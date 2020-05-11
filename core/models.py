@@ -13,7 +13,7 @@ class Actor(models.Model):
     nationality = models.CharField(max_length=100,)
     picture = models.ImageField()
     def __str__(self):
-        return f"{self.name} {self.family_name}"  
+        return self.family_name  
         
 class Film(models.Model):
     title = models.CharField(max_length=100,)
