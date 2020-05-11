@@ -1,0 +1,67 @@
+
+{% extends 'core/_base.html' %}
+{% load static %}
+{% block css_style %}
+<link rel="stylesheet" href="{% static 'core/css/home.css'%}">
+{% endblock css_style %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+<div id='main-home'>
+
+<div class="row">
+    
+    <div class="row mb-3">
+        {% if films %}
+        <h4>Movies where {{actor.name |lower|capfirst }} {{actor.family_name |upper }} took role:</h4>
+        {% else %}
+        <h4>Sorry There's no movie for your actor yet!</h4>
+        {% endif %}
+       
+    </div>
+    <!--########### trending movies column ####################-->
+    <div class="row col-12 mt-0">
+
+        {% for film in films %}
+        <div class="movie-card">
+            <div class="movie-header manOfSteel">
+                <div class="header-icon-container">
+                    <a href="#">
+                    <img src="{{ film.poster.url }}" class="card-img-top" alt="..." height='360'>
+                       
+                    </a>
+                </div>
+            </div><!--movie-header-->
+            <div class="movie-content">
+                <div class="movie-content-header">
+                    <a href="#">
+                        <h3 class="movie-title">{{film.title}}</h3>
+                    </a>
+                    <div class="imax-logo"></div>
+                </div>
+                <div class="movie-info">
+                    <div class="info-section">
+                        <label>Sortie le:</label>
+                        <span>{{film.release_date}}</span>
+                    </div><!--date,time-->
+                    <div class="info-section">
+                        <label>Actor</label>
+                        <span>{{film.actor.name}} {{film.actor.family_name}} </span>
+                    </div><!--screen-->
+                    
+                </div>
+            </div>
+        </div>  
+        {% endfor %}
+
+
+    </div>
+    <!--########### movie card ####################-->
+</div>
+</div>
+{% endblock content %}
+
+{% block js_style %}
+{% endblock js_style %}
